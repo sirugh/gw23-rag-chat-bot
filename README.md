@@ -1,5 +1,11 @@
 # Retrieval Augmented Generation (RAG) Bot
 
+<img src="https://github.com/sirugh/gw23-rag-chat-bot/assets/1278869/e5b89e1c-2e3a-4af4-9f76-75b3802784c0" width="400" />
+<img src="https://github.com/sirugh/gw23-rag-chat-bot/assets/1278869/713d61ba-19f4-4480-b01c-2ac798aa7122" width="400" />
+<img src="https://github.com/sirugh/gw23-rag-chat-bot/assets/1278869/16369d73-f29f-422f-a270-c33ca06450d3" width="400" />
+<img src="https://github.com/sirugh/gw23-rag-chat-bot/assets/1278869/6d59f73a-a74d-4cea-a6ff-2c46dd34b191" width="400" />
+
+
 This GarageWeek project aims to provide a interface which allows human-like interaction with a search agent. A poor man's [mendable.ai](https://www.mendable.ai/) or [phind.com](https://phind.com), if you will.
 
 Technically this project uses a [RAG pattern](https://eugeneyan.com/writing/llm-patterns/#retrieval-augmented-generation-to-add-knowledge). The general process for the pattern is:
