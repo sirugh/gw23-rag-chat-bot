@@ -1,0 +1,28 @@
+[
+  [
+    [
+      "dcf26a50-96de-490c-a411-40cda22dd2cf",
+      {
+        "pageContent": "I'm a generic test dataset. I contain arbitrary information.\n\nMy favorite color is red.\nMy favorite number is 42.",
+        "metadata": {
+          "source": "datasets/test/test1.txt",
+          "loc": { "lines": { "from": 1, "to": 4 } }
+        }
+      }
+    ],
+    [
+      "b1f5f873-c00e-4e67-980c-8d9b3d71cc64",
+      {
+        "pageContent": "# What about Markdown?\n\nMy favorite color is _actually_ blue.\n\n## This is another header\n\nMy favorite number is _actually_ 7.",
+        "metadata": {
+          "source": "datasets/test/test2.txt",
+          "loc": { "lines": { "from": 1, "to": 7 } }
+        }
+      }
+    ]
+  ],
+  {
+    "0": "dcf26a50-96de-490c-a411-40cda22dd2cf",
+    "1": "b1f5f873-c00e-4e67-980c-8d9b3d71cc64"
+  }
+]

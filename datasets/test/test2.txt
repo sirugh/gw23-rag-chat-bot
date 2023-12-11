@@ -1,0 +1,7 @@
+# What about Markdown?
+
+My favorite color is _actually_ blue.
+
+## This is another header
+
+My favorite number is _actually_ 7.

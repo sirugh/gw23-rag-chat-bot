@@ -1,0 +1,29 @@
+{
+  "name": "gw23-rag-docs-gpt",
+  "version": "1.0.0",
+  "description": "GW project which can answer questions about our public docs sites using a RAG approach.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "tsc -p .",
+    "start:watch": "nodemon --watch 'public/**/*.*' --watch 'src/**/*.ts' --exec \"ts-node\" src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stephen Rugh",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "faiss-node": "^0.5.1",
+    "langchain": "^0.0.200",
+    "ts-node": "^10.9.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.3",
+    "@types/node": "^20.10.3",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.2"
+  }
+}

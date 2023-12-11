@@ -1,0 +1,1194 @@
+[
+  [
+    [
+      "332bf741-eb27-4f9c-b701-b7e02b8d7ee6",
+      {
+        "pageContent": "# Adobe Commerce Events\n\nA monorepo for Adobe Commerce Events packages. This repo is using [turborepo](https://turborepo.org/) to manage packages.\n\n## Getting Started\n\nThis turborepo uses [Yarn](https://classic.yarnpkg.com/lang/en/) as a package manager. Install yarn if you haven't already by running `npm install -g yarn`.\n\n### Develop\n\nTo develop all apps and packages, run the following command:\n\n```\ncd commerce-events\nyarn dev\n```\n\nThis runs all packages and examples at the same time. The newer examples are using [NextJS](https://nextjs.org/) to make sure we cover use cases for modern package development. Under the old-examples, we are using [parcel](https://parceljs.org/) to just quickly host static files and test our amd/umd scripts.\n\nUnder the dev script, our built files are hosted at:\n\n-   sdk - `http://localhost:8080/index.js`\n-   collector - `http://localhost:8081/index.js`",
+        "metadata": {
+          "source": "commerce-events/README.md",
+          "loc": { "lines": { "from": 1, "to": 23 } }
+        }
+      }
+    ],
+    [
+      "3a0c4423-da8d-4b69-b6df-fd2c579ea4ea",
+      {
+        "pageContent": "## Release process\n\n### QA\n\nMerging a change to the `main` branch triggers a github action that builds and deploys the latest code to QA: https://unpkg.com/@adobe/magento-storefront-event-collector@qa/dist/index.js.\n\n### Production\n\nRelease steps:\n\n-   create a PR with a version bump in the package.json and package-lock.json in the package(s) you're releasing (example PR [here](https://github.com/adobe/commerce-events/pull/56/files))\n\n-   once the PR is approved and merged, create a [new release tag for the repo](https://github.com/adobe/commerce-events/tags)\n\nCreating a new release tag triggers a github action that builds and deploys the latest code to Prod: https://unpkg.com/@adobe/magento-storefront-event-collector/dist/index.js.",
+        "metadata": {
+          "source": "commerce-events/README.md",
+          "loc": { "lines": { "from": 25, "to": 39 } }
+        }
+      }
+    ],
+    [
+      "000369ea-a73f-43d6-b0e0-3e72dcbab6cb",
+      {
+        "pageContent": "### NPM Packages\n\n| Name                                                                  | NPM Namespace                               | version |\n| --------------------------------------------------------------------- | ------------------------------------------- | ------- |\n| [storefront-events-sdk](./packages/storefront-events-sdk)             | `@adobe/magento-storefront-events-sdk`      | 1.x     |\n| [storefront-events-collector](./packages/storefront-events-collector) | `@adobe/magento-storefront-event-collector` | 1.x     |",
+        "metadata": {
+          "source": "commerce-events/README.md",
+          "loc": { "lines": { "from": 41, "to": 46 } }
+        }
+      }
+    ],
+    [
+      "e03722a8-14d4-4c02-9c62-fae707782557",
+      {
+        "pageContent": "## add-to-cart\n\n### 🤖 Intelligent strategies\n\n-   Most added to cart\n\n### ⤴️ Publishing pages and conditions\n\n-   PDP\n    -   on add to cart\n    -   on increase quantity in cart\n-   PLP\n    -   on add to cart\n    -   on increase quantity in cart\n-   Cart\n    -   on increase quantity in cart\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`product`](./example-contexts/mock-product-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n[`changedProducts`](./example-contexts/mock-changed-products-context.md)",
+        "metadata": {
+          "source": "commerce-events/examples/events/add-to-cart.md",
+          "loc": { "lines": { "from": 1, "to": 28 } }
+        }
+      }
+    ],
+    [
+      "b04ea509-8cde-42c2-88b9-fa7e84ac4ac2",
+      {
+        "pageContent": "### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setProduct(productCtx);\nmse.context.setShoppingCart(shoppingCartCtx);\nmse.context.setChangedProducts(changedProductsCtx);\n\nmse.publish.addToCart();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/add-to-cart.md",
+          "loc": { "lines": { "from": 30, "to": 45 } }
+        }
+      }
+    ],
+    [
+      "82fdfffe-6599-44f7-aa6f-62dcd636b317",
+      {
+        "pageContent": "[Experience Platfrom Debugger browser extension](https://chromewebstore.google.com/detail/adobe-experience-platform/bfnnokhpnncpkdmbokanobigaccjkpob)\n\n### Additional resources\n\nMore information under [Experience Platform Debugger](https://experienceleague.adobe.com/docs/experience-platform/debugger/home.html?lang=en)",
+        "metadata": {
+          "source": "commerce-events/examples/events/aep-debugger/readme.md",
+          "loc": { "lines": { "from": 1, "to": 5 } }
+        }
+      }
+    ],
+    [
+      "28768517-05bc-4115-94eb-7e914b339085",
+      {
+        "pageContent": "## Catalog Service API -> Product events mappings\n\n### product context\n\nTODO\n\n### cart context\n\nTODO\n\n### changed products context (cart)\n\nTODO",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/catalog-service-api-to-product-context.md",
+          "loc": { "lines": { "from": 1, "to": 13 } }
+        }
+      }
+    ],
+    [
+      "f217c125-f22d-435a-b646-7d37b8d31c3d",
+      {
+        "pageContent": "## Live Search API -> Search events mappings\n\nAll Adobe Commerce Live Search headless implementations must track Live Search API [request](../search-request-sent.md) and [response](../search-response-received.md) events for Intelligent Merchandising, conversion tracking, attributions, and performance dashboards to function properly.\n\nHeadless implementations can use the examples provided here to tie API requests and responses to request and response events.\n\n`SearchInput` context example [here](../example-contexts/mock-search-input-context.md).\n\n`SearchResults` context example [here](../example-contexts/mock-search-results-context.md).\n\n**1. Set `SearchInput` context and generate `searchRequestSent` event**\n\n```javascript\nconst searchUnitId = \"custom-client-identifier\"; // can be any\n\n// searchRequestId in must the same in the input and results context for search actions to be properly tracked\nconst searchRequestId = uuidv4();\n\nconst filters = []; // can be any",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/live-search-api-to-search-context.md",
+          "loc": { "lines": { "from": 1, "to": 19 } }
+        }
+      }
+    ],
+    [
+      "0bfca687-bde2-46a9-80eb-bdec62ade733",
+      {
+        "pageContent": "const sort = []; // can be any\n\nconst searchInputUnit = {\n    searchUnitId,\n    searchRequestId,\n    queryTypes: [\"products\"],\n    phrase, // search query phrase\n    pageSize: 20, // can be any\n    currentPage: 1, // can be any\n    filter,\n    sort,\n};\n\nconst searchInputCtx = { units: [searchInputUnit] };\n\n// set context\nmse.context.setSearchInput(searchInputCtx);\n\n// publish event\nwindow.magentoStorefrontEvents?.publish.searchRequestSent(searchUnitId);",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/live-search-api-to-search-context.md",
+          "loc": { "lines": { "from": 21, "to": 40 } }
+        }
+      }
+    ],
+    [
+      "16dc2764-f9d8-472f-b66b-71abbec4ae7a",
+      {
+        "pageContent": "```\n\n**2. Make API request**\n\n```javascript\nconst response = await fetch(liveSearchAPIUrl, {\n    method: \"POST\",\n    headers: {\n        /*...*/\n    },\n    body: {\n        /*...*/\n    },\n});\n\nconst results = await response.json();",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/live-search-api-to-search-context.md",
+          "loc": { "lines": { "from": 41, "to": 56 } }
+        }
+      }
+    ],
+    [
+      "da234aec-b1ea-4c40-84e3-1e637ba59313",
+      {
+        "pageContent": "```\n\n**3. Set `SearchResults` context and generate `searchResponseReceived` event**\n\n```javascript\n// create products\nconst products = results.items\n    ? items.map((item, index) => ({\n          name: item.product.name,\n          sku: item.product.sku,\n          url: item.product.canonical_url ?? \"\",\n          imageUrl: item.product.image?.url ?? \"\",\n          price: item.product.price_range.minimum_price.final_price.value,\n          rank: index,\n      }))\n    : [];\n\n// create facets\nconst facets = results.facets\n    ? results.facets.map((facet) => ({\n          attribute: facet.attribute,\n          title: facet.title,\n          type: facet.type || \"PINNED\",\n          buckets: facet.buckets.map((bucket) => bucket),\n      }))\n    : [];",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/live-search-api-to-search-context.md",
+          "loc": { "lines": { "from": 57, "to": 82 } }
+        }
+      }
+    ],
+    [
+      "98d9c180-d431-4231-ae6e-ee2f3ce5f89a",
+      {
+        "pageContent": "// create search result unit\nconst searchResultUnit = {\n    searchUnitId,\n    searchRequestId, // must be searchRequestId from corresponding request\n    products,\n    categories: [],\n    suggestions: [],\n    page: results.page_info?.current_page || 1,\n    perPage: results.page_info?.page_size || 6,\n    facets,\n};\n\nconst searchResultsCtx = { units: [searchResultUnit] };\n\n// set context\nmse.context.setSearchResults(searchResultsCtx);\n\n// publish event\nwindow.magentoStorefrontEvents?.publish.searchResponseReceived(this.searchUnitId);\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/live-search-api-to-search-context.md",
+          "loc": { "lines": { "from": 84, "to": 103 } }
+        }
+      }
+    ],
+    [
+      "96683132-edb3-4497-9c60-41a547a174f7",
+      {
+        "pageContent": "## Product Recommendations API -> Recs events mappings\n\nAll Adobe Commerce Product Recommendations headless implementations must track Product Recommendations API [request](../recs-request-sent.md) and [response](../recs-response-received.md) events for recommendations, conversion tracking, attributions, and performance dashboards to function properly.\n\nHeadless implementations can use the examples provided here to tie API requests and responses to request and response events.\n\n`Recommendations` context example [here](../example-contexts/mock-recommendations-context.md).\n\n**1. Set up RecommendationsClient (Product Recs SDK)**\n\n```javascript\nconst storefrontContext = mse.context.getStorefrontInstance();\n\nconst pageType = \"CATEGORY\"; // can be any PageType\n\nconst storefront = { ...storefrontContext, pageType };\n\nconst client = new RecommendationsClient(storefront);",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/recs-api-to-recs-context.md",
+          "loc": { "lines": { "from": 1, "to": 18 } }
+        }
+      }
+    ],
+    [
+      "f2726f98-8435-4164-a9aa-c61cb2e38e4e",
+      {
+        "pageContent": "```\n\n**2. Generate `recsRequestSent` event (no special contexts required)**\n\n```javascript\nmse.publish.recsRequestSent({ pageContext: { pageType } });\n```\n\n**3. Make API request**\n\n```javascript\nconst res = await client.fetchPreconfigured(/* props */);\n```\n\n**4. Set `Recommendations` context and generate `recsResponseReceived` event**\n\n```javascript\nconst { data } = res;\nmse.context.setRecommendations({ units: data.results });\nmse.publish.recsResponseReceived();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/api-context-mappings/recs-api-to-recs-context.md",
+          "loc": { "lines": { "from": 19, "to": 39 } }
+        }
+      }
+    ],
+    [
+      "10ad49f0-142a-4435-ab18-20407f6c137c",
+      {
+        "pageContent": "## category-results-view\n\n### 🤖 Intelligent strategies\n\n-   Trending\n-   Most viewed\n-   Viewed also viewed\n\n### ⤴️ Publishing pages and conditions\n\n-   Product listing page page (_category browse_ mode vs _search_ mode)\n    -   on results view/render\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchResults`](./example-contexts/mock-search-results-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchResults(searchResultsCtx);\n\nmse.publish.categoryResultsView(\"search-bar\");\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/category-results-view.md",
+          "loc": { "lines": { "from": 1, "to": 35 } }
+        }
+      }
+    ],
+    [
+      "ef604921-3dc4-4608-a255-17a1a654a254",
+      {
+        "pageContent": "## event overrides\n\nFor any event with a set `customContext`, the collector overrides joins fields set in the relevant contexts with fields in `customContext`. The use case for overrides is when a developer wants to reuse and extend contexts set by other parts of the page in already supporte events.\n\nEvent overrides are only applicable when forwarding to AEP. They are not applied to Adobe Commerce and Sensei analytics events. Additional info in [README](../../packages/storefront-events-collector/README.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\nmse.publish.productPageView(customCtx);\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/custom-event-override.md",
+          "loc": { "lines": { "from": 1, "to": 13 } }
+        }
+      }
+    ],
+    [
+      "7ca9947b-26e6-4503-bb48-788e8e95a6af",
+      {
+        "pageContent": "### Example - adding categories product\n\n```javascript\nmagentoStorefrontEvents.publish.productPageView({\n    productListItems: [\n        {\n            productCategories: [\n                {\n                    categoryID: \"cat_15\",\n                    categoryName: \"summer pants\",\n                    categoryPath: \"pants/mens/summer\",\n                },\n            ],\n        },\n    ],\n});\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/custom-event-override.md",
+          "loc": { "lines": { "from": 15, "to": 31 } }
+        }
+      }
+    ],
+    [
+      "d302f21b-015c-4e99-945a-fc96ba780da0",
+      {
+        "pageContent": "## custom\n\nPublishing a custom event writes the custom event to the `adobeDataLayer`.\n\nIf AEP data collection is enabled on the Storefront Event Collector, custom events are forwarded to DX as described [here](https://experienceleague.adobe.com/docs/commerce-merchant-services/experience-platform-connector/event-forwarding/custom-events.html?lang=en).\n\nIf AEP data collection is not enabled, clients can configure [Adobe Experience Platform Tags](https://experienceleague.adobe.com/docs/commerce-merchant-services/experience-platform-connector/event-forwarding/using-tags.html?lang=en) to read custom events from the data layer and forward to Adobe DX.\n\nCustom events are not forwarded to Adobe Commerce and Sensei analytics and aren't used in intelligent strategies calculatiions.\n\n### 🤖 Intelligent strategies\n\nNone\n\n### ⤴️ Publishing pages and conditions\n\nNo restrictions",
+        "metadata": {
+          "source": "commerce-events/examples/events/custom.md",
+          "loc": { "lines": { "from": 1, "to": 17 } }
+        }
+      }
+    ],
+    [
+      "7b29d44b-59fe-4812-8cbe-03935ffca78a",
+      {
+        "pageContent": "### 🛄 Required contexts\n\n-   no contexts are required but it's recommended that `customContext` is set\n-   `customContext` data is the only data forwarded to DX for custom events\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\nmse.context.setCustom(customCtx);\n\nmse.publish.custom();\n```\n\n### Example\n\nCustom event - save for later event.\n\n```javascript\nmse.publish.custom({\n    commerce: {\n        saveForLaters: {\n            value: 1,\n        },\n    },\n});\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/custom.md",
+          "loc": { "lines": { "from": 19, "to": 46 } }
+        }
+      }
+    ],
+    [
+      "9a7a5ef1-6e30-45a5-9730-090074c443ff",
+      {
+        "pageContent": "## AEP context\n\nContains configuration settings for forwarding events to Adobe DX/AEP Edge\n\n**NOTE** this context is not used if client is using AEP Launch Tags\n\n### Used\n\n-   Adobe DX/AEP clients not using Launch Tags: all events\n\n### Full schema and required fields\n\n[AEP schema](../../../packages/storefront-events-sdk/src/types/schemas/aep.ts)\n\n### Mock data\n\n```javascript\nconst mockAepCtx = {\n    imsOrgId: \"1234@AdobeOrg\",\n    datastreamId: \"1234:dev\",\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-aep-context.md",
+          "loc": { "lines": { "from": 1, "to": 22 } }
+        }
+      }
+    ],
+    [
+      "d6568098-55dc-4e8b-97ce-619cee5ed93c",
+      {
+        "pageContent": "## Changed Products context\n\nRepresent product changes in cart.\n\n### Used\n\n-   add-to-cart\n-   remove-from-cart\n\n### Full schema and required fields\n\n[Changed Products schema](../../../packages/storefront-events-sdk/src/types/schemas/changedProducts.ts)",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-changed-products-context.md",
+          "loc": { "lines": { "from": 1, "to": 12 } }
+        }
+      }
+    ],
+    [
+      "47a1fff6-4fed-4ed5-af9b-6403458d892c",
+      {
+        "pageContent": "### Mock data",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-changed-products-context.md",
+          "loc": { "lines": { "from": 14, "to": 14 } }
+        }
+      }
+    ],
+    [
+      "44160767-0537-4ffd-8f45-c9e690185502",
+      {
+        "pageContent": "```javascript\n{\n    items: [\n        {\n            canApplyMsrp: false,\n            formattedPrice: \"$20.00\",\n            id: \"aaaaaa\",\n            prices: {\n                price: {\n                    value: 20.0,\n                    currency: \"USD\",\n                },\n            },\n            product: mockProductCtx,\n            configurableOptions: [],\n            quantity: 1,\n        },\n        {\n            canApplyMsrp: false,\n            formattedPrice: \"$50.00\",\n            id: \"cccccc\",\n            prices: {\n                price: {\n                    value: 50.0,\n                    currency: \"USD\",\n                },\n            },\n            product: {\n                productId: 222222,\n                name: \"Hoodie\",\n                sku: \"h001\",\n                pricing: {\n                    regularPrice: 50.0,\n                    minimalPrice: 50.0,\n                    maximalPrice: 50.0,\n                    currencyCode: \"USD\",\n                },\n            },",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-changed-products-context.md",
+          "loc": { "lines": { "from": 16, "to": 53 } }
+        }
+      }
+    ],
+    [
+      "c24f34c3-ea09-41b9-8744-10e3d5632297",
+      {
+        "pageContent": "},\n            configurableOptions: [],\n            quantity: 1,\n        },\n    ],\n}\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-changed-products-context.md",
+          "loc": { "lines": { "from": 53, "to": 59 } }
+        }
+      }
+    ],
+    [
+      "b7109eff-89ab-4a86-8bba-3cc044b30fb7",
+      {
+        "pageContent": "## Event Forwarding context\n\nContains configuration for forwarding events to Adobe Sensei and Adobe DX/AEP Edge.\n\n**NOTE** `snowplow` option **defaults to true** and must be true for Adobe Sensei Product Recs and Intelligent Merchandising to capture data correctly.\n\n**NOTE** `aep` option **defaults to false** and must be false for clients using Launch Tags to avoid double-counting events.\n\n### Used\n\n-   all events\n\n### Full schema and required fields\n\n[Event Forwarding schema](../../../packages/storefront-events-sdk/src/types/schemas/eventForwarding.ts)\n\n### Mock data\n\n```javascript\nconst mockEventForwardingCtx = {\n    snowplow: true,\n    aep: false,\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-event-forwarding-context.md",
+          "loc": { "lines": { "from": 1, "to": 24 } }
+        }
+      }
+    ],
+    [
+      "7cf49dec-8005-4fb2-adf4-de5fa53e3502",
+      {
+        "pageContent": "## Order context\n\n### Used\n\n-   place-order\n\n### Full schema and required fields\n\n[Order schema](../../../packages/storefront-events-sdk/src/types/schemas/order.ts)\n\n### Mock data\n\n```javascript\nconst mockOrder = {\n    appliedCouponCode: \"\",\n    email: \"example@email.com\",\n    grandTotal: 69.98,\n    orderId: 111111,\n    orderType: \"checkout\",\n    otherTax: 0.0,\n    paymentMethodCode: \"credit card\",\n    paymentMethodName: \"visa\",\n    payments: [\n        {\n            paymentMethodCode: \"credit card\",\n            paymentMethodName: \"visa\",\n            total: 30,\n        },\n        {\n            paymentMethodCode: \"cash\",\n            paymentMethodName: \"cash\",\n            total: 39.98,\n        },\n    ],\n    salesTax: 0.0,\n    subtotalExcludingTax: 69.98,\n    subtotalIncludingTax: 69.98,\n    shipping: {\n        shippingAmount: 5.99,\n        shippingMethod: \"ground\",\n    },\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-order-context.md",
+          "loc": { "lines": { "from": 1, "to": 43 } }
+        }
+      }
+    ],
+    [
+      "bc124f8b-4f21-4a7e-a184-1b2fede80c04",
+      {
+        "pageContent": "## Page context\n\n### Used\n\n-   all events\n\n### Full schema and required fields\n\n[Page schema](../../../packages/storefront-events-sdk/src/types/schemas/page.ts)\n\n### Mock data\n\n```javascript\nconst mockPageCtx = {\n    pageType: \"Category\",\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-page-context.md",
+          "loc": { "lines": { "from": 1, "to": 17 } }
+        }
+      }
+    ],
+    [
+      "83bda381-8312-4b27-8986-097e6b1599fc",
+      {
+        "pageContent": "## Product context\n\n### Used\n\n-   product view\n-   product add to cart\n\n### Full schema and required fields\n\n[Product schema](../../../packages/storefront-events-sdk/src/types/schemas/product.ts)\n\n### Mock data\n\n```javascript\nconst mockProductCtx = {\n    productId: 1153,\n    name: \"Felicia Maxi Dress\",\n    sku: \"VD04\",\n    topLevelSku: \"VD04\",\n    categories: [\"14\", \"15\", \"21\"],\n    pricing: {\n        regularPrice: 19.99,\n        minimalPrice: 10.99,\n        maximalPrice: 24.99,\n        currencyCode: \"USD\",\n    },\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-product-context.md",
+          "loc": { "lines": { "from": 1, "to": 28 } }
+        }
+      }
+    ],
+    [
+      "7a014ab4-7eb4-43c9-9282-604a175d7811",
+      {
+        "pageContent": "## Recommendation Unit context\n\n### Used\n\n-   recs-response-received\n-   recs-unit-render\n-   recs-unit-view\n-   recs-item-click\n-   recs-item-add-to-cart\n\n### Full schema and required fields\n\n[Recommendations schema](../../../packages/storefront-events-sdk/src/types/schemas/recommendations.ts",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-recommendations-context.md",
+          "loc": { "lines": { "from": 1, "to": 13 } }
+        }
+      }
+    ],
+    [
+      "7def589d-9019-45bb-8299-ffd7a969243f",
+      {
+        "pageContent": "### Mock data\n\n```javascript\nconst mockRecommendationUnitCtx = {\n    backupsCount: 0,\n    configType: \"preconfigured\",\n    itemsCount: 2,\n    name: \"most-viewed\",\n    source: \"api\",\n    unitId: \"abc123\",\n    placement: \"below-main-content\",\n    yOffsetTop: 100,\n    yOffsetBottom: 1200,\n    recType: \"most-viewed\",\n};",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-recommendations-context.md",
+          "loc": { "lines": { "from": 15, "to": 29 } }
+        }
+      }
+    ],
+    [
+      "bef99f56-cd74-4797-aa52-10997cc64244",
+      {
+        "pageContent": "const mockRecommendedItemsCtx = [\n    {\n        currencyCode: \"USD\",\n        displayRank: 1,\n        imageUrl: null,\n        name: \"first item\",\n        prices: {\n            maximum: {\n                final: 19.99,\n                finalAdjustments: [\n                    {\n                        code: \"coupon\",\n                        amount: 10,\n                    },\n                ],\n                regular: 29.99,\n                regularAdjustments: [],\n            },\n            minimum: {\n                final: 19.99,\n                finalAdjustments: [\n                    {\n                        code: \"coupon\",\n                        amount: 10,\n                    },\n                ],\n                regular: 29.99,\n                regularAdjustments: [],\n            },\n        },\n        serviceRank: 1,\n        sku: \"abc123\",\n        unitId: \"abc123\",\n        url: \"https://magento.com\",\n    },\n    {\n        currencyCode: \"USD\",\n        displayRank: 2,",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-recommendations-context.md",
+          "loc": { "lines": { "from": 31, "to": 68 } }
+        }
+      }
+    ],
+    [
+      "c8b40875-ae52-401e-b587-babf2e44b765",
+      {
+        "pageContent": "imageUrl: null,\n        name: \"second item\",\n        prices: {\n            maximum: {\n                final: 9.99,\n                finalAdjustments: [\n                    {\n                        code: \"coupon\",\n                        amount: 10,\n                    },\n                ],\n                regular: 19.99,\n                regularAdjustments: [],\n            },\n            minimum: {\n                final: 9.99,\n                finalAdjustments: [\n                    {\n                        code: \"coupon\",\n                        amount: 10,\n                    },\n                ],\n                regular: 19.99,\n                regularAdjustments: [],\n            },\n        },\n        serviceRank: 2,\n        sku: \"def456\",\n        unitId: \"abc123\",\n        url: \"https://magento.com\",\n    },\n];\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-recommendations-context.md",
+          "loc": { "lines": { "from": 69, "to": 101 } }
+        }
+      }
+    ],
+    [
+      "f28ef127-951b-48b8-9a9f-aa7913e299b5",
+      {
+        "pageContent": "## Search Input context\n\n### Used\n\n-   search-request-sent\n\n### Full schema and required fields\n\n[Search Input schema](../../../packages/storefront-events-sdk/src/types/schemas/searchInput.ts)",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-input-context.md",
+          "loc": { "lines": { "from": 1, "to": 9 } }
+        }
+      }
+    ],
+    [
+      "64c42784-43eb-44d5-86d4-b5e0833cd587",
+      {
+        "pageContent": "### Mock data\n\n```javascript\nconst mockSearchInput = {\n    units: [\n        {\n            searchUnitId: \"search-bar\",\n            searchRequestId: \"abc123\",\n            queryTypes: [\"products\"],\n            phrase: \"red pants\",\n            currentPage: 1,\n            pageSize: 20,\n            filter: [\n                {\n                    attribute: \"size\",\n                    eq: \"small\",\n                },\n                {\n                    attribute: \"category\",\n                    in: [\"bottoms\", \"mens\"],\n                },\n                {\n                    attribute: \"price\",\n                    range: { from: 19.99, to: 49.99 },\n                },\n            ],\n            sort: [\n                {\n                    attribute: \"relevance\",\n                    direction: \"DESC\",\n                },\n            ],\n        },\n    ],\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-input-context.md",
+          "loc": { "lines": { "from": 11, "to": 46 } }
+        }
+      }
+    ],
+    [
+      "b1988ac6-e13d-41a2-be45-17889827af7e",
+      {
+        "pageContent": "## Search Results context\n\n### Used\n\n-   search-response-received\n-   search-results-view\n-   category-results-view\n-   search-product-click\n-   search-category-click\n\n### Full schema and required fields\n\n[Search Results schema](../../../packages/storefront-events-sdk/src/types/schemas/searchResults.ts)\n\n**IMPORTANT** `searchUnitId` must match `searchUnitId` in request for the context to be processed by Commerce correctly.",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-results-context.md",
+          "loc": { "lines": { "from": 1, "to": 15 } }
+        }
+      }
+    ],
+    [
+      "c53a47cc-aacb-488c-9ae7-fb9cedf4bd0c",
+      {
+        "pageContent": "### Mock data",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-results-context.md",
+          "loc": { "lines": { "from": 17, "to": 17 } }
+        }
+      }
+    ],
+    [
+      "efaba45e-e7e7-4939-bca7-8592cca755e3",
+      {
+        "pageContent": "```javascript\nconst mockSearchResults = {\n    units: [\n        {\n            searchUnitId: \"search-bar\",\n            searchRequestId: \"abc123\",\n            executionTime: 378.39,\n            products: [\n                {\n                    name: \"Red Pants\",\n                    sku: \"abc123\",\n                    url: \"https://magento.com/red-pants\",\n                    imageUrl: \"https://magento.com/red-pants.jpg\",\n                    price: 49.99,\n                    rank: 1,\n                },\n            ],\n            suggestions: [\n                {\n                    suggestion: \"red pants\",\n                    rank: 1,\n                },\n            ],\n            categories: [\n                {\n                    name: \"Pants\",\n                    url: \"https://magento.com/category/pants\",\n                    rank: 1,\n                },\n                {\n                    name: \"Bottoms\",\n                    url: \"https://magento.com/category/bottoms\",",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-results-context.md",
+          "loc": { "lines": { "from": 19, "to": 50 } }
+        }
+      }
+    ],
+    [
+      "2f7c7431-c9aa-4237-bdcc-ffff53c790f4",
+      {
+        "pageContent": "rank: 2,\n                },\n            ],\n            page: 1,\n            perPage: 20,\n            facets: [\n                {\n                    attribute: \"size\",\n                    title: \"Size\",\n                    type: \"PINNED\",\n                    buckets: [\n                        {\n                            title: \"S\",\n                            count: 4,\n                        },\n                        {\n                            title: \"M\",\n                            count: 12,\n                        },\n                        {\n                            title: \"L\",\n                            count: 9,\n                        },\n                    ],\n                },\n            ],\n        },\n    ],\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-search-results-context.md",
+          "loc": { "lines": { "from": 51, "to": 80 } }
+        }
+      }
+    ],
+    [
+      "b81534df-9df6-4f40-8008-a05d5a586dab",
+      {
+        "pageContent": "## Shopping Cart context\n\n### Used\n\n-   product-view\n-   add-to-cart\n-   remove-from-cart\n-   initiate-cart\n-   view-cart\n-   initiate-checkout\n-   complete-checkout\n\n### Full schema and required fields\n\n[Shopping Cart schema](../../../packages/storefront-events-sdk/src/types/schemas/shoppingCart.ts)",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-shopping-cart-context.md",
+          "loc": { "lines": { "from": 1, "to": 15 } }
+        }
+      }
+    ],
+    [
+      "2e31bfaf-ce26-4509-ab02-693629338de8",
+      {
+        "pageContent": "### Mock data\n\n```javascript\nconst mockShoppingCartCtx = {\n    id: \"1\",\n    items: [\n        {\n            canApplyMsrp: false,\n            formattedPrice: \"$20.00\",\n            id: \"aaaaaa\",\n            prices: {\n                price: {\n                    value: 20.0,\n                    currency: \"USD\",\n                    regularPrice: 20.0,\n                },\n            },\n            product: mockProductCtx,\n            quantity: 1,\n        },\n    ],\n    prices: {\n        subtotalExcludingTax: {\n            value: 19.99,\n            currency: \"USD\",\n        },\n        subtotalIncludingTax: {\n            value: 23.23,\n            currency: \"USD\",\n        },\n    },\n    totalQuantity: 5,\n    possibleOnepageCheckout: false,\n    giftMessageSelected: false,\n    giftWrappingSelected: false,\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-shopping-cart-context.md",
+          "loc": { "lines": { "from": 17, "to": 53 } }
+        }
+      }
+    ],
+    [
+      "6ab8c1a0-438b-4921-be8c-f186132a818c",
+      {
+        "pageContent": "## Storefront context\n\n### Used\n\n-   all events\n\n### Full schema and required fields\n\n[Storefront schema](../../../packages/storefront-events-sdk/src/types/schemas/storefrontInstance.ts)\n\n### Mock data\n\n```javascript\nconst mockStorefrontCtx = {\n    environmentId: \"aaaaaa\",\n    instanceId: \"bbbbbb\",\n    environment: \"production\",\n    storeUrl: \"https://example.com\",\n    websiteId: 333333,\n    websiteCode: \"website\",\n    storeId: 111111,\n    storeCode: \"magento\",\n    storeViewId: 222222,\n    storeViewCode: \"default\",\n    websiteName: \"website\",\n    storeName: \"magento\",\n    storeViewName: \"default\",\n    baseCurrencyCode: \"USD\",\n    storeViewCurrencyCode: \"USD\",\n    storefrontTemplate: \"Other\",\n};\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/example-contexts/mock-storefront-context.md",
+          "loc": { "lines": { "from": 1, "to": 32 } }
+        }
+      }
+    ],
+    [
+      "e4d28156-36e3-4d6c-ac4c-3e34df61fc9d",
+      {
+        "pageContent": "## initiate-checkout\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Mini cart\n    -   on initiate checkout\n-   Cart\n    -   on initiate checkout\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setShoppingCart(shoppingCartCtx);\n\nmse.publish.initiateCheckout();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/initiate-checkout.md",
+          "loc": { "lines": { "from": 1, "to": 35 } }
+        }
+      }
+    ],
+    [
+      "9beef28f-3821-4bca-88cb-d93939154e35",
+      {
+        "pageContent": "## open-cart\n\nOn first item in cart. Also used as `initiate-cart`.\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   PDP\n    -   on first add to cart\n-   PLP\n    -   on first add to cart\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setShoppingCart(shoppingCartCtx);\n\nmse.publish.openCart();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/open-cart.md",
+          "loc": { "lines": { "from": 1, "to": 37 } }
+        }
+      }
+    ],
+    [
+      "9da10674-7c9b-4589-aebb-0e979fc450be",
+      {
+        "pageContent": "## page-view\n\n### 🤖 Intelligent strategies\n\n-   All (needed for data integrity verification)\n\n### ⤴️ Publishing pages and conditions\n\n-   All\n    -   on render/view\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setPage(pageCtx);\n\nmse.publish.pageView();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/page-view.md",
+          "loc": { "lines": { "from": 1, "to": 30 } }
+        }
+      }
+    ],
+    [
+      "9f71e2e6-bcda-4845-b54e-4fab81aa6b23",
+      {
+        "pageContent": "## initiate-checkout\n\n### 🤖 Intelligent strategies\n\n-   Bought also bought\n-   Viewed also bought\n\n### 📈 Reporting\n\n-   Conversion rate (recs and search)\n\n### ⤴️ Publishing pages and conditions\n\n-   Checkout\n    -   on complete checkout\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n[`order`](./example-contexts/mock-order-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setShoppingCart(shoppingCartCtx);\nmse.context.setOrder(orderCtx);\n\nmse.publish.placeOrder();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/place-order.md",
+          "loc": { "lines": { "from": 1, "to": 40 } }
+        }
+      }
+    ],
+    [
+      "6e7bac59-07e0-40e3-a2ed-398392b7b980",
+      {
+        "pageContent": "## product-page-view\n\n### 🤖 Intelligent strategies\n\n-   Trending\n-   Viewed also viewed\n-   Viewed also bought\n\n### ⤴️ Publishing pages and conditions\n\n-   PDP\n    -   on render/view\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`product`](./example-contexts/mock-product-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setProduct(productCtx);\n\nmse.publish.productPageView();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/product-page-view.md",
+          "loc": { "lines": { "from": 1, "to": 35 } }
+        }
+      }
+    ],
+    [
+      "530d7f88-fd89-4211-8b95-1631ec6d7584",
+      {
+        "pageContent": "## Commerce events examples",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 1, "to": 1 } }
+        }
+      }
+    ],
+    [
+      "cc90c60d-1b99-40a9-9579-7f96ea2497d3",
+      {
+        "pageContent": "### Event purposes and usage\n\n#### Intelligent Commerce solutions\n\nAdobe Commerce solutions powered by Sensei (Live Search, Product Recommendations) require a set of clickstream events to be captured in shopper's browsers in order to provide accurate recommendations and iMerch strategies.\n\nThe events in the table below are the minimum required set of events for Adobe Sensei to interpret shopper data correctly. The required fields and contexts for each event can be found in the detailed examples in this directory.\n\n![event strategies](/examples/imerch_strategy_events.png)\n\n#### Performance dashboards\n\nLive Search and Product Recs dashboards in Commerce Admin utilize event data to show conversion rates and other perofrmance metrics.",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 3, "to": 15 } }
+        }
+      }
+    ],
+    [
+      "7a7b59fe-656f-4ce1-aca6-bc49ddb52cea",
+      {
+        "pageContent": "#### Adobe DX\n\nAll commerce events published through the Storefront Events SDK are written to the `adobeDataLayer` in a shopper's browser. Adobe Commerce clients can easily set up data forwarding from the `adobeDataLayer` to the Adobe Digital Experience platform using one of two options:\n\n(1) [Adobe Experience Platform Tags](https://experienceleague.adobe.com/docs/commerce-merchant-services/experience-platform-connector/event-forwarding/using-tags.html?lang=en)\n\nOR\n\n(2) Setting [`EventForwarding`](./example-contexts/mock-event-forwarding-context.md) and [`AEP`](./example-contexts/mock-aep-context.md) contexts at storefront application level (same time as `Storefront` context).\n\n**NOTE** it is imporant to set `EventForwarding` to `{ aep: false }` for all clients using AEP Launch Tags.",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 17, "to": 27 } }
+        }
+      }
+    ],
+    [
+      "61997411-2100-4c81-9dc0-ed84fd2bb4d4",
+      {
+        "pageContent": "### Required events\n\n**IMPORTANT** All new page loads should generate a [`page-view`](./page-view.md) event. The Commerce ML jobs will not process events correctly if they weren't generated on a page with a tracked `page-view`.\n\n**Required events for [Live Search dashboard](https://experienceleague.adobe.com/docs/commerce-merchant-services/live-search/live-search-admin/performance.html?lang=en)**",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 29, "to": 33 } }
+        }
+      }
+    ],
+    [
+      "bca53cb1-3bff-4991-82c1-a8383c0edacb",
+      {
+        "pageContent": "| Dashboard area        | Events                                                                                                                                                                                                                                                                                                                                                               | Join field           |\n| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 35, "to": 36 } }
+        }
+      }
+    ],
+    [
+      "706d81e5-c23d-4308-83b4-8df073e89f99",
+      {
+        "pageContent": "| Unique searches       | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md)                                                                                                                                                                                                                         | searchRequestId      |\n| Zero results searches | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md)                                                                                                                                                                                                                         | searchRequestId      |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 37, "to": 38 } }
+        }
+      }
+    ],
+    [
+      "a88ee792-7208-4e1c-94da-a231dd0b9b7b",
+      {
+        "pageContent": "| Zero results rate     | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md)                                                                                                                                                                                                                         | searchRequestId      |\n| Popular searches      | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md)                                                                                                                                                                                                                         | searchRequestId      |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 39, "to": 40 } }
+        }
+      }
+    ],
+    [
+      "d1e090fe-44fb-42f8-b61e-0e3504b2ea33",
+      {
+        "pageContent": "| Avg. click position   | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md), [`search-results-view`](./search-results-view.md), [`search-product-click`](./search-product-click.md)                                                                                                                 | searchRequestId      |\n| Click-through rate    | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md), [`search-results-view`](./search-results-view.md), [`search-product-click`](./search-product-click.md)                                                                                                                 | searchRequestId, sku |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 41, "to": 42 } }
+        }
+      }
+    ],
+    [
+      "f96d0463-ccb1-4d05-8bcf-7823a9748e27",
+      {
+        "pageContent": "| Conversion rate       | [`page-view`](./page-view.md),[`search-request-sent`](./search-request-sent.md), [`search-response-received`](./search-response-received.md), [`search-results-view`](./search-results-view.md), [`search-product-click`](./search-product-click.md), [`product-view`](./product-page-view.md), [`add-to-cart`](./add-to-cart.md), [`place-order`](./place-order.md) | searchRequestId, sku |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 43, "to": 43 } }
+        }
+      }
+    ],
+    [
+      "416950a2-fe9c-4228-b074-1b2eef9db81e",
+      {
+        "pageContent": "**Required events for [Product Recommendations dashboard](https://experienceleague.adobe.com/docs/commerce-merchant-services/product-recommendations/admin/workspace.html?lang=en)**",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 45, "to": 45 } }
+        }
+      }
+    ],
+    [
+      "bf13187b-9cda-4b6d-9461-60ccec1e56ad",
+      {
+        "pageContent": "| Dashboard column | Events                                                                                                                                                                                                                                                                                                                        | Join field  |\n| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 47, "to": 48 } }
+        }
+      }
+    ],
+    [
+      "1fcab38e-bbe8-4ab3-ad17-64dcdc632c02",
+      {
+        "pageContent": "| Impressions      | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-unit-render`](./recs-unit-view.md)                                                                                                                                               | unitId      |\n| Views            | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-unit-render`](./recs-unit-render.md), [`recs-unit-view`](./recs-unit-view.md)                                                                                                    | unitId      |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 49, "to": 50 } }
+        }
+      }
+    ],
+    [
+      "a422801e-a4ee-4d7d-9259-111ff65edae8",
+      {
+        "pageContent": "| Clicks           | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-item-click`](./recs-item-click.md), [`recs-add-to-cart-click`](./recs-item-add-to-cart.md)                                                                                       | unitId      |\n| Revenue          | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-item-click`](./recs-item-click.md), [`recs-add-to-cart-click`](./recs-item-add-to-cart.md), [`place-order`](./place-order.md)                                                    | unitId, sku |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 51, "to": 52 } }
+        }
+      }
+    ],
+    [
+      "3d5e9689-ff59-4d7e-a74f-a5637d9accd7",
+      {
+        "pageContent": "| LT Revenue       | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-item-click`](./recs-item-click.md), [`recs-add-to-cart-click`](./recs-item-add-to-cart.md), [`place-order`](./place-order.md)                                                    | unitId, sku |\n| CTR              | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-unit-render`](./recs-unit-render.md), [`recs-item-click`](./recs-item-click.md), [`recs-add-to-cart-click`](./recs-item-add-to-cart.md)                                          | unitId, sku |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 53, "to": 54 } }
+        }
+      }
+    ],
+    [
+      "5d759f7e-e3c2-49b7-80dc-bd44ab1af27f",
+      {
+        "pageContent": "| vCTR             | [`page-view`](./page-view.md),[`recs-request-sent`](./recs-request-sent.md), [`recs-response-received`](./recs-response-received.md), [`recs-unit-render`](./recs-unit-render.md), [`recs-unit-view`](./recs-unit-view.md), [`recs-item-click`](./recs-item-click.md), [`recs-add-to-cart-click`](./recs-item-add-to-cart.md) | unitId, sku |",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 55, "to": 55 } }
+        }
+      }
+    ],
+    [
+      "c49fdc5e-e7c3-4768-af26-9b9cd8673306",
+      {
+        "pageContent": "### Required contexts\n\n**All events**\n\n`Page`\n\n`Storefront`\n\nSetting `Page` and `Storefront` contexts should happen at the page level/storefront application layer rather than when generating individual events (for example, in a PHP storefront, the PHP application container is responsible for setting them at runtime).\n\nThe contexts are included in all event generation examples as a reminder that they are required for events to be processed correctly.",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 57, "to": 67 } }
+        }
+      }
+    ],
+    [
+      "7c2e7b5d-0e13-4f5c-a04a-f3f3eabd27c7",
+      {
+        "pageContent": "### Debugging\n\n#### Adobe Data Layer\n\nAll events published through the Storefront Events SDK are written to the `adobeDataLayer` object in a shopper's browser. You can check contexts and fields in your events in Dev Tools -> Console, `window.adobeDataLayer`.\n\nSearch Response Received example\n\n![search response received example](/examples/search_response_received.png)\n\nRecs Item Click example\n\n![recs item click example](/examples/recs_item_click.png)\n\n#### Further debugging using browser extensions\n\n[Debugging dashboards and Intelligent Services](./snowplow-debugger/README.md)\n\n[Debugging AEP events](./aep-debugger/README.md)",
+        "metadata": {
+          "source": "commerce-events/examples/events/readme.md",
+          "loc": { "lines": { "from": 69, "to": 87 } }
+        }
+      }
+    ],
+    [
+      "072b4fd6-ac5c-4d46-a163-021dd95138dc",
+      {
+        "pageContent": "## recs-item-add-to-cart\n\n### 🤖 Intelligent strategies\n\n-   Most added to cart\n\n### 📈 Reporting\n\n-   Click-through rate (recs)\n-   Conversion rate\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on product add to cart\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`recommendations`](./example-contexts/mock-recommendations-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setRecommendations(recommendationsCtx);\n\nmse.publish.recsItemAddToCartClick({ unitId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-item-add-to-cart.md",
+          "loc": { "lines": { "from": 1, "to": 38 } }
+        }
+      }
+    ],
+    [
+      "38c74bb7-b1fd-48d3-b757-6bde1b86dd92",
+      {
+        "pageContent": "## recs-item-click\n\n### 🤖 Intelligent strategies\n\n-   Conversion tracking, data integrity\n-   Most clicked\n\n### 📈 Reporting\n\n-   Click-through rate (recs)\n-   Conversion rate\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on product click\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`recommendations`](./example-contexts/mock-recommendations-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setRecommendations(recommendationsCtx);\n\nmse.publish.recsItemClick({ unitId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-item-click.md",
+          "loc": { "lines": { "from": 1, "to": 39 } }
+        }
+      }
+    ],
+    [
+      "45a8da0a-1541-4b03-b373-f297f897c032",
+      {
+        "pageContent": "## recs-request-sent\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on API request sent\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\nmse.publish.recsRequestSent();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-request-sent.md",
+          "loc": { "lines": { "from": 1, "to": 28 } }
+        }
+      }
+    ],
+    [
+      "7b4388ef-5dca-451d-bea7-6dbe1673cb4f",
+      {
+        "pageContent": "## recs-response-received\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on API response received\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`recommendations`](./example-contexts/mock-recommendations-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setRecommendations(recommendationsCtx);\n\nmse.publish.recsRequestSent();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-response-received.md",
+          "loc": { "lines": { "from": 1, "to": 33 } }
+        }
+      }
+    ],
+    [
+      "131f34e8-295d-46db-b2db-8ffc84f6f5a2",
+      {
+        "pageContent": "## recs-unit-render\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on results rendered\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`recommendations`](./example-contexts/mock-recommendations-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setRecommendations(recommendationsCtx);\n\nmse.publish.recsUnitRender({ unitId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-unit-render.md",
+          "loc": { "lines": { "from": 1, "to": 33 } }
+        }
+      }
+    ],
+    [
+      "cf2e5b50-4a38-4820-9207-14212b07bbd8",
+      {
+        "pageContent": "## recs-unit-view\n\n### 🤖 Intelligent strategies\n\n-   Trending\n-   Most viewed\n-   Viewed also viewed\n\n### ⤴️ Publishing pages and conditions\n\n-   Recs carousel\n    -   on results view\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`recommendations`](./example-contexts/mock-recommendations-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setRecommendations(recommendationsCtx);\n\nmse.publish.recsUnitView({ unitId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/recs-unit-view.md",
+          "loc": { "lines": { "from": 1, "to": 35 } }
+        }
+      }
+    ],
+    [
+      "5ca2f8fa-2d13-485c-bd75-f38fd28c54ff",
+      {
+        "pageContent": "## remove-from-cart\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Cart\n    -   on remove from cart\n    -   on decrease quantity in cart\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n[`changedProducts`](./example-contexts/mock-changed-products-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setShoppingCart(shoppingCartCtx);\nmse.context.setChangedProducts(changedProductsCtx);\n\nmse.publish.removeFromCart();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/remove-from-cart.md",
+          "loc": { "lines": { "from": 1, "to": 37 } }
+        }
+      }
+    ],
+    [
+      "2e512a29-4031-4e81-9e20-e1e3e402085c",
+      {
+        "pageContent": "## search-product-click\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Search bar\n    -   on category results click\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchResults`](./example-contexts/mock-search-results-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchResults(searchResultsCtx);\n\nmse.publish.searchCategoryClick(\"search-bar\", { categoryId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/search-category-click.md",
+          "loc": { "lines": { "from": 1, "to": 33 } }
+        }
+      }
+    ],
+    [
+      "40051cb5-57a4-49ed-9cf1-9536c5385997",
+      {
+        "pageContent": "## search-product-click\n\n### 🤖 Intelligent strategies\n\n-   Conversion tracking, data integrity\n-   Most clicked\n\n### 📈 Reporting\n\n-   Avg. click position\n-   Click-through rate\n-   Conversion rate\n\n### ⤴️ Publishing pages and conditions\n\n-   Search bar\n    -   on product click\n-   Search results page\n    -   on product click\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchResults`](./example-contexts/mock-search-results-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchResults(searchResultsCtx);\n\nmse.publish.searchProductClick(\"search-bar\", { productId });\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/search-product-click.md",
+          "loc": { "lines": { "from": 1, "to": 42 } }
+        }
+      }
+    ],
+    [
+      "9ddb036b-62e0-43e4-b7fd-d0e188bed7bb",
+      {
+        "pageContent": "## search-request-sent\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### 📈 Reporting\n\n-   Avg. click position\n-   Unique searches\n-   Popular searches\n-   Zero results searches\n-   Zero results rate\n\n### ⤴️ Publishing pages and conditions\n\n-   Search bar\n    -   on API request sent\n-   Browse/Search results page\n    -   on API request sent\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchInput`](./example-contexts/mock-search-input-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchInput(searchInputCtx);\n\nmse.publish.searchRequestSent(\"search-bar\");\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/search-request-sent.md",
+          "loc": { "lines": { "from": 1, "to": 43 } }
+        }
+      }
+    ],
+    [
+      "daa1eabf-43b3-432c-9a3b-7a0a5fe7f20b",
+      {
+        "pageContent": "## search-response-received\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### 📈 Reporting\n\n-   Avg. click position\n-   Unique searches\n-   Popular searches\n-   Zero results searches\n-   Zero results rate\n\n### ⤴️ Publishing pages and conditions\n\n-   Search bar\n    -   on API response received\n-   Browse/Search results page\n    -   on API response received\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchResults`](./example-contexts/mock-search-results-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchResults(searchResultsCtx);\n\nmse.publish.searchResponseReceived(\"search-bar\");\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/search-response-received.md",
+          "loc": { "lines": { "from": 1, "to": 43 } }
+        }
+      }
+    ],
+    [
+      "affa3e37-7d4c-449a-af93-5a8d308fc002",
+      {
+        "pageContent": "## search-results-view\n\n### 🤖 Intelligent strategies\n\n-   Trending\n-   Most viewed\n-   Viewed also viewed\n\n### ⤴️ Publishing pages and conditions\n\n-   Search bar\n    -   on results view/render\n-   Search results page (_search_ mode vs _category browse_ mode)\n    -   on results view/render\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`searchResults`](./example-contexts/mock-search-results-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n// mse.context.page(pageCtx);\n// mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setSearchResults(searchResultsCtx);\n\nmse.publish.searchResultsView(\"search-bar\");\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/search-results-view.md",
+          "loc": { "lines": { "from": 1, "to": 37 } }
+        }
+      }
+    ],
+    [
+      "e8fc04ea-b83d-4d5f-8c3d-a241438d158e",
+      {
+        "pageContent": "## shopping-cart-view\n\n### 🤖 Intelligent strategies\n\n-   None\n\n### ⤴️ Publishing pages and conditions\n\n-   Cart\n    -   on view/render\n-   Mini cart\n    -   on view\n\n### 🛄 Required contexts\n\n[`page`](./example-contexts/mock-page-context.md)\n\n[`storefront`](./example-contexts/mock-storefront-context.md)\n\n[`shoppingCart`](./example-contexts/mock-shopping-cart-context.md)\n\n### 🔧 Usage\n\n```javascript\nconst mse = window.magentoStorefrontEvents;\n\n/* set in application container */\n//   mse.context.page(pageCtx);\n//   mse.context.setStorefrontInstance(storefrontCtx);\n\n/* set before firing event */\nmse.context.setShoppingCart(shoppingCartCtx);\n\nmse.publish.shoppingCartView();\n```",
+        "metadata": {
+          "source": "commerce-events/examples/events/shopping-cart-view.md",
+          "loc": { "lines": { "from": 1, "to": 35 } }
+        }
+      }
+    ],
+    [
+      "56002df5-36e8-42bb-b47c-81916f4f5666",
+      {
+        "pageContent": "## Snowplow Debugger\n\n### Understanding Snowplow in Intelligent Services data collection\n\nIntelligent Services data collection uses a third party platform (Snowplow) to validate data received is in the correct schema/format. If you're sending data but aren't seeing corresponding changes to your dashboards and recommendations, it's very likely the data you're sending is failing schema validation.\n\n![event flow](/examples/event_flow.png)\n\nThe [Snowplow Debugger browser extension](https://chromewebstore.google.com/detail/snowplow-inspector/maplkdomeamdlngconidoefjpogkmljm?pli=1) is a helpful tool to validate/fix schemas during event instrumentation.",
+        "metadata": {
+          "source": "commerce-events/examples/events/snowplow-debugger/readme.md",
+          "loc": { "lines": { "from": 1, "to": 9 } }
+        }
+      }
+    ],
+    [
+      "133999c6-b26f-4a4f-a10d-cce19bd60652",
+      {
+        "pageContent": "### Troubleshooting and overriding schemas\n\nOccassionaly a schema in the debugger will show up as `Unrecognized`. That is due to data collection schemas being out of sync with what's in the Snowplow registry. To work around this issue you override the schemas in your browser.\n\nInstructions on overriding schema:\n\n1. Find the name of the unrecognized schema and the corresponding json file in this directory (for example, in the screenshot below, to add a recognized schema, got to [storefront-instance.json](./storefront-instance.json))\n\n2. In the top left corner of your debugger, click on `Manage Schemas`\n\n![unrecognized schema storefront instance](/examples/unrecognized_schema_storefront_instance.png)\n\n3. Select `Local Registry` -> `Schemas`\n\n![edit schemas in local registry](/examples/edit_schema_local_registry.png)\n\n4. Select `New Schema` and copy/paste the json file with the right schema\n\n![add new schema in local registry](/examples/new_schema_local_registry.png)",
+        "metadata": {
+          "source": "commerce-events/examples/events/snowplow-debugger/readme.md",
+          "loc": { "lines": { "from": 11, "to": 29 } }
+        }
+      }
+    ],
+    [
+      "eca84fe1-9790-4f6e-91b8-2080f64aa4b7",
+      {
+        "pageContent": "5. Due to debugger weirdness, you have to save schema, then select `Back to Debugger`, then select `Manage Schemas` again to view your newly added schema\n\n![list of schemas in local registry](/examples/schema_list_local_registry.png)\n\n6. Your schema in the debugger view should now be showing as `Valid` (or `Invalid` on 😭 days)\n\n![valid schema storefront instance](/examples/valid_schema_storefront_instance.png)",
+        "metadata": {
+          "source": "commerce-events/examples/events/snowplow-debugger/readme.md",
+          "loc": { "lines": { "from": 31, "to": 37 } }
+        }
+      }
+    ],
+    [
+      "f73f4312-8a07-43d3-b70e-b3436fe5e8a3",
+      {
+        "pageContent": "### Additional resources\n\nMore information and detailed list of schema override steps under [Snowplow Inspector Adding Schemas](https://docs.snowplow.io/docs/testing-debugging/snowplow-inspector/adding-schemas/)",
+        "metadata": {
+          "source": "commerce-events/examples/events/snowplow-debugger/readme.md",
+          "loc": { "lines": { "from": 39, "to": 41 } }
+        }
+      }
+    ],
+    [
+      "edeb3f84-5dd3-4ec1-8f92-a4d5c1206dbd",
+      {
+        "pageContent": "# Adobe Commerce Events Collectors\n\n[![version][version-badge]][npm]\n[![downloads][downloads-badge]][npm]\n[![size][size-badge]][bundlephobia]\n[![build][build-badge]][actions]\n[![typescript][typescript-badge]][typescript]\n[![contributing][contributing-badge]][contributing]\n\n## Overview\n\nThis package listens for and handles events published by the [Adobe Commerce Events SDK][sdk] to the adobeDataLayer[acdl]. It runs as a side effect and is meant to be a convenience for users who want to send event data to Adobe Commerce.",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 1, "to": 12 } }
+        }
+      }
+    ],
+    [
+      "125ee7f5-d409-4103-9459-c8e64d77234b",
+      {
+        "pageContent": "## Installation\n\nThe collector can be used as a hosted script, or bundled in a JavaScript application. The script version is hosted on [unpkg][unpkg], and the bundled version is hosted on [npm][npm].\n\nTo load the Collector as a script, use the following snippet.\n\n```\n<script src=\"https://unpkg.com/@adobe/commerce-events-collectors/dist/index.js\"></script>\n```\n\nTo install the script as a dependency, run this command.\n\n```shell\nnpm install @adobe/commerce-events-collectors\n```\n\n## Quick start\n\nAfter loading the collector script, or importing the package as shown below, there is nothing else that needs to be done.\n\n```javascript\nimport \"@adobe/commerce-events-collectors\";\n```",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 14, "to": 36 } }
+        }
+      }
+    ],
+    [
+      "3721aa9a-2083-4fb5-bbe1-ef1b944b4309",
+      {
+        "pageContent": "## Usage\n\nThe collector listens for the following events.\n\n-   `pageView`\n-   `addToCart`\n-   `productPageView`\n-   `shoppingCartView`\n-   `initiateCheckout`\n-   `openCart`\n-   `placeOrder`\n-   `recsItemAddToCartClick`\n-   `recsItemClick`\n-   `recsRequestSent`\n-   `recsResponseReceived`\n-   `recsUnitRender`\n-   `recsUnitView`\n-   `removeFromCart`\n-   `searchCategoryClick`\n-   `searchProductClick`\n-   `searchRequestSent`\n-   `searchResponseReceived`\n-   `searchResultsView`\n-   `categoryResultsView`\n-   `searchSuggestionClick`\n-   `createAccount`\n-   `editAccount`\n-   `signIn`\n-   `signOut`\n-   `custom`\n\nB2B events\n\n-   `addToRequisitionList`\n-   `createRequisitionList`\n-   `removeFromRequisitionList`\n\nThe handlers forward events to two edges:\n\n-   Adobe Commerce Data Services (maintained by Adobe Engineering and used to power merchant performance dashboards)\n\n    Required contexts:\n\n    `StorefrontInstance`\n\n    Events not forwarded to Adobe Commerce:\n\n    `createAccount`",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 38, "to": 85 } }
+        }
+      }
+    ],
+    [
+      "dffa1c72-fc6d-4f99-a1f0-e470a39331e7",
+      {
+        "pageContent": "`editAccount`\n\n    `openCart`\n\n    `removeFromCart`\n\n    `signIn`\n\n    `signOut`\n\n    `custom`\n\n    B2B events\n\n    `addToRequisitionList`\n\n    `createRequisitionList`\n\n    `removeFromRequisitionList`\n\n-   [Adobe Experience Platform (AEP)](https://business.adobe.com/products/experience-platform/adobe-experience-platform.html) (requires a subscription and additional merchant [setup](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/datastreams.html?lang=en); data can be used by merchants inside the Adobe Experience Platform for detailed analytics, targeted merchandising, real time customer data profiles, and more)\n\n    Required contexts:\n\n    `AEP`\n\n    `EventForwarding.aep: true`\n\n    Events not forwarded to AEP Edge:\n\n    `recsItemAddToCartClick`\n\n    `recsItemClick`\n\n    `recsRequestSent`\n\n    `searchResponseReceived`\n\n    `searchCategoryClick`\n\n    `searchProductClick`\n\n    `searchResultsView`\n\n    `categoryResultsView`\n\n    `searchSuggestionClick`",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 87, "to": 133 } }
+        }
+      }
+    ],
+    [
+      "1ca88177-541d-4bd1-bbf2-f1efa967f519",
+      {
+        "pageContent": "### Turning off collection per edge\n\nEvents are sent to Adobe Commerce Data Services by default. To turn collection off collection, set `EventForwarding.commerce: false`.\n\nEvents are not set to AEP Edge unless explicitly configured (`EventForwarding.aep: true`);",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 135, "to": 139 } }
+        }
+      }
+    ],
+    [
+      "1b4f12b9-33e4-49ca-a671-e80fcdb4f209",
+      {
+        "pageContent": "### Handling custom events\n\nCustom events are supported for the Adobe Experience Platform only. Custom data will not be forwarded to Adobe Commerce dashboards and metrics trackers.\n\nFor any `custom` event, the collector:\n\n-   adds`identityMap` with `ECID` as a primary identity\n-   includes `email` in `identityMap` as a secondary identity _if_ `personalEmail.address` is set in the event\n-   wraps the full event inside an `xdm` object before forwarding to the Edge\n\nExample:\n\nCustom event published through MSE SDK:\n\n```javascript\nmse.publish.custom({\n    commerce: {\n        saveForLaters: {\n            value: 1,\n        },\n    },\n});\n```\n\nIn AEP Edge:\n\n```javascript\n{\n  xdm: {\n    identityMap: {\n      ECID: [\n        {\n          id: 'ecid1234',\n          primary: true\n        }\n      ],\n      email: [\n        {\n          id: \"runs@safari.ke\",\n          primary: false\n        }\n      ]\n    },\n    commerce: {\n        saveForLaters: {\n            value: 1\n        }\n    }\n  }\n}",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 141, "to": 190 } }
+        }
+      }
+    ],
+    [
+      "8343fdc5-688d-45c4-ba6c-cedc2948cb59",
+      {
+        "pageContent": "```\n\n**note** Using custom events may affect OOTB Adobe Analytics reports.",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 191, "to": 193 } }
+        }
+      }
+    ],
+    [
+      "0122af09-2dd6-4120-b6df-e106d5549ee6",
+      {
+        "pageContent": "### Handling event overrides (custom attributes)\n\nAttribute overrides for standard events are supported for the Experience Platform only. Custom data will not be forwarded to Commerce dashboards and metrics trackers.\n\nFor any event with a set `customContext`, the collector overrides joins fields set in the relevant contexts with fields in `customContext`. The use case for overrides is when a developer wants to reuse and extend contexts set by other parts of the page in already supporte events.\n\n_Note_ when overriding custom events, event forwarding to AEP should be turned off for that event type in order to avoid-double counting.\n\nExample:\n\nProduct view with Adobe Commerce overrides published though MSE SDK:\n\nProduct context (set by another script on the page):\n\n```javascript\n{\n}",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 195, "to": 211 } }
+        }
+      }
+    ],
+    [
+      "af147b48-e68f-4c90-8c5a-b7f47d0b4bba",
+      {
+        "pageContent": "```\n\n```javascript\nmse.publish.productPageView({\n    productListItems: [\n        {\n            productCategories: [\n                {\n                    categoryID: \"cat_15\",\n                    categoryName: \"summer pants\",\n                    categoryPath: \"pants/mens/summer\",\n                },\n            ],\n        },\n    ],\n});\n```\n\nIn AEP Edge:\n\n```javascript\n{\n  xdm: {\n    eventType: 'commerce.productViews',\n    identityMap: {\n      ECID: [\n        {\n          id: 'ecid1234',\n          primary: true,\n        }\n      ]\n    },\n    commerce: {\n      productViews: {\n        value : 1,\n      }\n    },\n    productListItems: [{\n        SKU: \"1234\",\n        name: \"leora summer pants\",\n        productCategories: [{\n            categoryID: \"cat_15\",\n            categoryName: \"summer pants\",\n            categoryPath: \"pants/mens/summer\",\n        }],\n    }],\n  }\n}\n```\n\n**Note** Overriding events with custom attributes may affect OOTB Adobe Analytics reports.",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 212, "to": 262 } }
+        }
+      }
+    ],
+    [
+      "a68b89fd-921e-4d77-b608-d999def7d06a",
+      {
+        "pageContent": "## Shopper Consent and Data Collection Opt out\n\nThe \"mg_dnt\" cookie is used by Product Recommendations to restrict data collection.\n\nwhen the [cookie restriction mode](https://experienceleague.adobe.com/docs/commerce-admin/start/compliance/privacy/compliance-cookie-law.html) is enabled, data services will set the \"mg_dnt\" cookie to true.\n\n```javascript\nconst listenForCookieEvents = ($) => {\n    const DNT_COOKIE = \"mg_dnt\";\n    let userAllowedSaveCookie = !!$.mage.cookies.get(\"user_allowed_save_cookie\");\n\n    if (userAllowedSaveCookie) {\n        $.mage.cookies.clear(DNT_COOKIE);\n    } else {\n        $.mage.cookies.set(DNT_COOKIE, true);\n    }\n};",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 264, "to": 280 } }
+        }
+      }
+    ],
+    [
+      "cd3da560-e058-4566-94bf-a35be2ca2098",
+      {
+        "pageContent": "```\n\nBy default, the user consent preference in AEP is set to \"opt in\", unless the cookie restriction mode is enabled and the \"mg_dnt\" cookie is present.\n\nThe script will keep polling to check for any changes and send the updated preference to AEP.\n\n```javascript\nconst doNotTrackCookie = document.cookie.indexOf(\"mg_dnt\") !== -1;\nalloy(\"setConsent\", {\n    consent: [\n        {\n            standard: \"Adobe\",\n            version: \"1.0\",\n            value: {\n                general: doNotTrackCookie ? \"out\" : \"in\",\n            },\n        },\n    ],\n});\nsetInterval(setConsent, 1000);\n```",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 281, "to": 301 } }
+        }
+      }
+    ],
+    [
+      "a1b035ea-71ac-4b0a-a704-98e40c7e3dbd",
+      {
+        "pageContent": "## PII Data Collection\n\nThe following events forward a user's email as PII data to AEP:\n\n`createAccount`\n\n`editAccount`\n\n`signIn`",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 303, "to": 311 } }
+        }
+      }
+    ],
+    [
+      "ab40f00a-4e4d-4bea-ba7d-8a8522b491b9",
+      {
+        "pageContent": "## Support\n\nIf you have any questions or encounter any issues, please reach out at these locations.\n\n-   [GitHub][issues]",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 313, "to": 317 } }
+        }
+      }
+    ],
+    [
+      "0b9c4000-6186-4002-9a68-1dc78220edf2",
+      {
+        "pageContent": "[npm]: https://npmjs.com/package/@adobe/commerce-events-collectors\n[version-badge]: https://img.shields.io/npm/v/@adobe/magento-storefront-event-collector.svg?style=flat-square\n[downloads-badge]: https://img.shields.io/npm/dt/@adobe/magento-storefront-event-collector?style=flat-square\n[bundlephobia]: https://bundlephobia.com/result?p=@adobe/magento-storefront-event-collector\n[size-badge]: https://img.shields.io/bundlephobia/minzip/@adobe/magento-storefront-event-collector?style=flat-square\n[actions]: https://github.com/adobe/commerce-events/actions\n[build-badge]: https://img.shields.io/github/workflow/status/adobe/magento-storefront-event-collector/merge-to-main?style=flat-square\n[typescript]: https://typescriptlang.org/dt/search?search=%40adobe%2Fcommerce-events-collectors\n[typescript-badge]: https://img.shields.io/npm/types/@adobe/commerce-events-collectors?style=flat-square\n[contributing]: https://github.com/adobe/commerce-events/blob/main/.github/CONTRIBUTING.md",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 319, "to": 328 } }
+        }
+      }
+    ],
+    [
+      "81daf1e0-2411-4797-b043-1fa657745f65",
+      {
+        "pageContent": "[contributing-badge]: https://img.shields.io/badge/PRs-welcome-success?style=flat-square\n[sdk]: https://npmjs.com/package/@adobe/magento-storefront-events-sdk\n[acdl]: https://github.com/adobe/adobe-client-data-layer\n[unpkg]: https://unpkg.com/@adobe/magento-storefront-event-collector/dist/index.js\n[issues]: https://github.com/adobe/commerce-events/issues",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-collector/README.md",
+          "loc": { "lines": { "from": 329, "to": 333 } }
+        }
+      }
+    ],
+    [
+      "137e1b44-c038-4ac3-84ab-4c3adee04999",
+      {
+        "pageContent": "# Adobe Commerce Events SDK\n\n[![version][version-badge]][npm]\n[![downloads][downloads-badge]][npm]\n[![size][size-badge]][bundlephobia]\n[![build][build-badge]][actions]\n[![typescript][typescript-badge]][typescript]\n[![contributing][contributing-badge]][contributing]",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 1, "to": 8 } }
+        }
+      }
+    ],
+    [
+      "6304e78d-2537-4187-982b-b2f70a540ccb",
+      {
+        "pageContent": "## Overview\n\nThis package serves as the foundation for eventing on an [Adobe Commerce][commerce] storefront. It provides access to the Adobe data layer, and an event publishing service.\n\nYou can handle the events in a custom implementation, or use the [Adobe Commerce Events Collectors][collectors] package that listens for events and sends them to Adobe Commerce edges for processing.\n\n**Note:** When an event is published through the SDK, all subscribers to that event get notified. Defining a custom listener shouldn't preclude you from also running the Adobe Commerce Events Collectors.\n\nOur context schemas are designed to simplify forwarding to two edges:",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 10, "to": 18 } }
+        }
+      }
+    ],
+    [
+      "58280f0b-f8d9-4444-9d21-25edfeec17b8",
+      {
+        "pageContent": "-   Adobe Commerce Data Services (maintained by Adobe Engineering and used to power merchant performance dashboards)\n-   [Adobe Experience Platform](https://business.adobe.com/products/experience-platform/adobe-experience-platform.html) (requires a subscription and additional merchant [setup](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/datastreams.html?lang=en); data can be used by merchants inside the Adobe Experience Platform for detailed analytics, targeted merchandising, real time customer data profiles, and more)",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 20, "to": 21 } }
+        }
+      }
+    ],
+    [
+      "c0414154-481b-4f8d-b3aa-ad1eba891598",
+      {
+        "pageContent": "## Installation\n\nThis SDK can be used as a hosted script, or bundled in a JavaScript application. The script version is hosted on [unpkg][unpkg], and the bundled version is hosted on [npm][npm].\n\nTo load the SDK as a script, use the following snippet.\n\n```\n<script src=\"https://unpkg.com/@adobe/commerce-events-sdk/dist/index.js\"></script>\n```\n\nTo install the script as a dependency, run this command.\n\n```shell\nnpm install @adobe/commerce-events-sdk\n```",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 23, "to": 37 } }
+        }
+      }
+    ],
+    [
+      "c86b88a5-fa97-4708-8e6f-9a8312361050",
+      {
+        "pageContent": "## Quick start\n\nOnce imported, you have access to the four main functions of the Events SDK.\n\n-   `Context` - set context data\n-   `Publish` - publish events\n-   `Subscribe` - subscribe to events\n-   `Unsubscribe` - unsubscribe from events\n\nBelow is a code example of how to get started.\n\n**IMPORTANT** Relevant context data must be populated before publishing events that require it.\n\n```javascript\nimport mse from \"@adobe/commerce-events-sdk\";\n// handler - can go in a different module\nfunction addToCartHandler(event) {\n    // do something with the event\n}\n// subscribe to events\nmse.subscribe.addToCart(addToCartHandler);",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 39, "to": 59 } }
+        }
+      }
+    ],
+    [
+      "fa996956-b2d5-407b-a92b-d4e65466eab2",
+      {
+        "pageContent": "// set context data\nconst shoppingCartContext = {\n    id: \"1\",\n    items: [\n        {\n            id: \"shoppingCart\",\n            product: {\n                productId: 111111,\n                sku: \"ts001\",\n                pricing: {\n                    regularPrice: 20.0,\n                    currencyCode: \"USD\",\n                },\n            },\n            quantity: 1,\n        },\n    ],\n};\nmse.context.setShoppingCart(shoppingCartContext);\n\n// publish events\nmse.publish.addToCart();\n\n// unsubscribe from events\nmse.unsubscribe.addToCart(addToCartHandler);\n```",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 61, "to": 86 } }
+        }
+      }
+    ],
+    [
+      "037cd23e-5d82-4d20-80a7-9550f1630c49",
+      {
+        "pageContent": "## Schemas and supported events\n\nThe below methods allow you to set specific contexts based on the SDK schema and to publish a set of events supported by this API.\n\nAddiontally, you can publish custom events or add a custom context to a supported event.",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 88, "to": 92 } }
+        }
+      }
+    ],
+    [
+      "2b5e9d2c-6ae9-42f7-9c5f-46fa8a57c971",
+      {
+        "pageContent": "## API reference\n\nThe SDK is broken down into four major parts: `Context`, `Publish`, `Subscribe`, `Unsubscribe`.\n\n### Context\n\nPre-defined contexts are listed in the [ContextManager](./src/ContextManager.ts).\n\nExamples of setting context under [examples/events/example-contexts](../../examples/events/example-contexts/).\n\nRequired contexts per event under [examples/events/](../../examples/events/).\n\n### Publish\n\nPre-defined publishable events listed in the [PublishManager](./src/PublishManager.ts). Any event that's not part of the `PublishManager` should be handled as a custom event.\n\nA list of examples on publishing each event is available under [examples](../../examples/).",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 94, "to": 110 } }
+        }
+      }
+    ],
+    [
+      "cd45d343-314f-43ba-8b91-1a3fb8dd4cfd",
+      {
+        "pageContent": "### Subscribe\n\nSupported subscibe events are defined in the [SubscribeManager](./src/SubscribeManager.ts). Any event that's not part of the `SubscribeManager` should be handled as a custom event.\n\nNote that a large number of custom events with different schemas is an anti-pattern (most events you need should be supported by `SubscribeManager`). If there are standard events you believe should be supported by `SubscribeManager`, please submit an [issue](https://github.com/adobe/commerce-events/issues).\n\nNote that it is rare for an application utilizing the SDK to have to subscribe to events. In most cases subscribes and unsubscribes are handled by the [Storefront Events Collector](../storefront-events-collector/).\n\n### Unsubscribe\n\nSupported unsubscibe events are defined in the [UnubscribeManager](./src/UnsubscribeManager.ts).\n\nAs noted above, it is rare for an SDK and Collector user to have to call these functions directly.",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 112, "to": 124 } }
+        }
+      }
+    ],
+    [
+      "ff4c051d-f1e5-4c42-9c04-1f6718ca0f15",
+      {
+        "pageContent": "## Support\n\nIf you have any questions or encounter any issues, please reach out on [GitHub][issues].",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 126, "to": 128 } }
+        }
+      }
+    ],
+    [
+      "58302887-4e38-4d01-9586-ab1c3125b439",
+      {
+        "pageContent": "[npm]: https://npmjs.com/package/@adobe/magento-storefront-events-sdk\n[version-badge]: https://img.shields.io/npm/v/@adobe/magento-storefront-events-sdk.svg?style=flat-square\n[downloads-badge]: https://img.shields.io/npm/dt/@adobe/magento-storefront-events-sdk?style=flat-square\n[bundlephobia]: https://bundlephobia.com/result?p=@adobe/magento-storefront-events-sdk\n[size-badge]: https://img.shields.io/bundlephobia/minzip/@adobe/magento-storefront-events-sdk?style=flat-square\n[actions]: https://github.com/adobe/commerce-events/actions\n[build-badge]: https://img.shields.io/github/workflow/status/adobe/commerce-events/publish-latest?style=flat-square\n[typescript]: https://typescriptlang.org/dt/search?search=%40adobe%2Fcommerce-events-sdk\n[typescript-badge]: https://img.shields.io/npm/types/@adobe/commerce-events-sdk?style=flat-square\n[contributing]: https://github.com/adobe/commerce-events/blob/main/.github/CONTRIBUTING.md",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 130, "to": 139 } }
+        }
+      }
+    ],
+    [
+      "12ff4f21-f439-4752-b21d-b6b206534fe4",
+      {
+        "pageContent": "[contributing-badge]: https://img.shields.io/badge/PRs-welcome-success?style=flat-square\n[commerce]: https://business.adobe.com/products/magento/magento-commerce.html\n[collectors]: https://github.com/adobe/commerce-events/tree/main/packages/storefront-events-collector\n[unpkg]: https://unpkg.com/@adobe/magento-storefront-events-sdk/dist/index.js\n[issues]: https://github.com/adobe/commerce-events/issues",
+        "metadata": {
+          "source": "commerce-events/packages/storefront-events-sdk/README.md",
+          "loc": { "lines": { "from": 140, "to": 144 } }
+        }
+      }
+    ],
+    [
+      "8dc0c65f-abb5-40f2-b2cd-274b855c67ac",
+      {
+        "pageContent": "# `tsconfig`\n\nThese are base shared `tsconfig.json`s from which all other `tsconfig.json`'s inherit from.",
+        "metadata": {
+          "source": "commerce-events/packages/tsconfig/README.md",
+          "loc": { "lines": { "from": 1, "to": 3 } }
+        }
+      }
+    ]
+  ],
+  {
+    "0": "332bf741-eb27-4f9c-b701-b7e02b8d7ee6",
+    "1": "3a0c4423-da8d-4b69-b6df-fd2c579ea4ea",
+    "2": "000369ea-a73f-43d6-b0e0-3e72dcbab6cb",
+    "3": "e03722a8-14d4-4c02-9c62-fae707782557",
+    "4": "b04ea509-8cde-42c2-88b9-fa7e84ac4ac2",
+    "5": "82fdfffe-6599-44f7-aa6f-62dcd636b317",
+    "6": "28768517-05bc-4115-94eb-7e914b339085",
+    "7": "f217c125-f22d-435a-b646-7d37b8d31c3d",
+    "8": "0bfca687-bde2-46a9-80eb-bdec62ade733",
+    "9": "16dc2764-f9d8-472f-b66b-71abbec4ae7a",
+    "10": "da234aec-b1ea-4c40-84e3-1e637ba59313",
+    "11": "98d9c180-d431-4231-ae6e-ee2f3ce5f89a",
+    "12": "96683132-edb3-4497-9c60-41a547a174f7",
+    "13": "f2726f98-8435-4164-a9aa-c61cb2e38e4e",
+    "14": "10ad49f0-142a-4435-ab18-20407f6c137c",
+    "15": "ef604921-3dc4-4608-a255-17a1a654a254",
+    "16": "7ca9947b-26e6-4503-bb48-788e8e95a6af",
+    "17": "d302f21b-015c-4e99-945a-fc96ba780da0",
+    "18": "7b29d44b-59fe-4812-8cbe-03935ffca78a",
+    "19": "9a7a5ef1-6e30-45a5-9730-090074c443ff",
+    "20": "d6568098-55dc-4e8b-97ce-619cee5ed93c",
+    "21": "47a1fff6-4fed-4ed5-af9b-6403458d892c",
+    "22": "44160767-0537-4ffd-8f45-c9e690185502",
+    "23": "c24f34c3-ea09-41b9-8744-10e3d5632297",
+    "24": "b7109eff-89ab-4a86-8bba-3cc044b30fb7",
+    "25": "7cf49dec-8005-4fb2-adf4-de5fa53e3502",
+    "26": "bc124f8b-4f21-4a7e-a184-1b2fede80c04",
+    "27": "83bda381-8312-4b27-8986-097e6b1599fc",
+    "28": "7a014ab4-7eb4-43c9-9282-604a175d7811",
+    "29": "7def589d-9019-45bb-8299-ffd7a969243f",
+    "30": "bef99f56-cd74-4797-aa52-10997cc64244",
+    "31": "c8b40875-ae52-401e-b587-babf2e44b765",
+    "32": "f28ef127-951b-48b8-9a9f-aa7913e299b5",
+    "33": "64c42784-43eb-44d5-86d4-b5e0833cd587",
+    "34": "b1988ac6-e13d-41a2-be45-17889827af7e",
+    "35": "c53a47cc-aacb-488c-9ae7-fb9cedf4bd0c",
+    "36": "efaba45e-e7e7-4939-bca7-8592cca755e3",
+    "37": "2f7c7431-c9aa-4237-bdcc-ffff53c790f4",
+    "38": "b81534df-9df6-4f40-8008-a05d5a586dab",
+    "39": "2e31bfaf-ce26-4509-ab02-693629338de8",
+    "40": "6ab8c1a0-438b-4921-be8c-f186132a818c",
+    "41": "e4d28156-36e3-4d6c-ac4c-3e34df61fc9d",
+    "42": "9beef28f-3821-4bca-88cb-d93939154e35",
+    "43": "9da10674-7c9b-4589-aebb-0e979fc450be",
+    "44": "9f71e2e6-bcda-4845-b54e-4fab81aa6b23",
+    "45": "6e7bac59-07e0-40e3-a2ed-398392b7b980",
+    "46": "530d7f88-fd89-4211-8b95-1631ec6d7584",
+    "47": "cc90c60d-1b99-40a9-9579-7f96ea2497d3",
+    "48": "7a7b59fe-656f-4ce1-aca6-bc49ddb52cea",
+    "49": "61997411-2100-4c81-9dc0-ed84fd2bb4d4",
+    "50": "bca53cb1-3bff-4991-82c1-a8383c0edacb",
+    "51": "706d81e5-c23d-4308-83b4-8df073e89f99",
+    "52": "a88ee792-7208-4e1c-94da-a231dd0b9b7b",
+    "53": "d1e090fe-44fb-42f8-b61e-0e3504b2ea33",
+    "54": "f96d0463-ccb1-4d05-8bcf-7823a9748e27",
+    "55": "416950a2-fe9c-4228-b074-1b2eef9db81e",
+    "56": "bf13187b-9cda-4b6d-9461-60ccec1e56ad",
+    "57": "1fcab38e-bbe8-4ab3-ad17-64dcdc632c02",
+    "58": "a422801e-a4ee-4d7d-9259-111ff65edae8",
+    "59": "3d5e9689-ff59-4d7e-a74f-a5637d9accd7",
+    "60": "5d759f7e-e3c2-49b7-80dc-bd44ab1af27f",
+    "61": "c49fdc5e-e7c3-4768-af26-9b9cd8673306",
+    "62": "7c2e7b5d-0e13-4f5c-a04a-f3f3eabd27c7",
+    "63": "072b4fd6-ac5c-4d46-a163-021dd95138dc",
+    "64": "38c74bb7-b1fd-48d3-b757-6bde1b86dd92",
+    "65": "45a8da0a-1541-4b03-b373-f297f897c032",
+    "66": "7b4388ef-5dca-451d-bea7-6dbe1673cb4f",
+    "67": "131f34e8-295d-46db-b2db-8ffc84f6f5a2",
+    "68": "cf2e5b50-4a38-4820-9207-14212b07bbd8",
+    "69": "5ca2f8fa-2d13-485c-bd75-f38fd28c54ff",
+    "70": "2e512a29-4031-4e81-9e20-e1e3e402085c",
+    "71": "40051cb5-57a4-49ed-9cf1-9536c5385997",
+    "72": "9ddb036b-62e0-43e4-b7fd-d0e188bed7bb",
+    "73": "daa1eabf-43b3-432c-9a3b-7a0a5fe7f20b",
+    "74": "affa3e37-7d4c-449a-af93-5a8d308fc002",
+    "75": "e8fc04ea-b83d-4d5f-8c3d-a241438d158e",
+    "76": "56002df5-36e8-42bb-b47c-81916f4f5666",
+    "77": "133999c6-b26f-4a4f-a10d-cce19bd60652",
+    "78": "eca84fe1-9790-4f6e-91b8-2080f64aa4b7",
+    "79": "f73f4312-8a07-43d3-b70e-b3436fe5e8a3",
+    "80": "edeb3f84-5dd3-4ec1-8f92-a4d5c1206dbd",
+    "81": "125ee7f5-d409-4103-9459-c8e64d77234b",
+    "82": "3721aa9a-2083-4fb5-bbe1-ef1b944b4309",
+    "83": "dffa1c72-fc6d-4f99-a1f0-e470a39331e7",
+    "84": "1ca88177-541d-4bd1-bbf2-f1efa967f519",
+    "85": "1b4f12b9-33e4-49ca-a671-e80fcdb4f209",
+    "86": "8343fdc5-688d-45c4-ba6c-cedc2948cb59",
+    "87": "0122af09-2dd6-4120-b6df-e106d5549ee6",
+    "88": "af147b48-e68f-4c90-8c5a-b7f47d0b4bba",
+    "89": "a68b89fd-921e-4d77-b608-d999def7d06a",
+    "90": "cd3da560-e058-4566-94bf-a35be2ca2098",
+    "91": "a1b035ea-71ac-4b0a-a704-98e40c7e3dbd",
+    "92": "ab40f00a-4e4d-4bea-ba7d-8a8522b491b9",
+    "93": "0b9c4000-6186-4002-9a68-1dc78220edf2",
+    "94": "81daf1e0-2411-4797-b043-1fa657745f65",
+    "95": "137e1b44-c038-4ac3-84ab-4c3adee04999",
+    "96": "6304e78d-2537-4187-982b-b2f70a540ccb",
+    "97": "58280f0b-f8d9-4444-9d21-25edfeec17b8",
+    "98": "c0414154-481b-4f8d-b3aa-ad1eba891598",
+    "99": "c86b88a5-fa97-4708-8e6f-9a8312361050",
+    "100": "fa996956-b2d5-407b-a92b-d4e65466eab2",
+    "101": "037cd23e-5d82-4d20-80a7-9550f1630c49",
+    "102": "2b5e9d2c-6ae9-42f7-9c5f-46fa8a57c971",
+    "103": "cd45d343-314f-43ba-8b91-1a3fb8dd4cfd",
+    "104": "ff4c051d-f1e5-4c42-9c04-1f6718ca0f15",
+    "105": "58302887-4e38-4d01-9586-ab1c3125b439",
+    "106": "12ff4f21-f439-4752-b21d-b6b206534fe4",
+    "107": "8dc0c65f-abb5-40f2-b2cd-274b855c67ac"
+  }
+]

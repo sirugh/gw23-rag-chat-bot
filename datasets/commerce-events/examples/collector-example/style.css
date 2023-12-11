@@ -1,0 +1,16 @@
+.events {
+    display: grid;
+    gap: 1.25rem;
+    justify-content: start;
+}
+
+.event-group {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    width: 150px;
+    border-radius: 2px;
+}

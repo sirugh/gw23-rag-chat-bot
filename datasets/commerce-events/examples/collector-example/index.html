@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- sdk -->
+        <script src="http://localhost:8080/index.js"></script>
+
+        <!-- local -->
+        <script src="/index.js"></script>
+
+        <!-- collector -->
+        <script src="http://localhost:8081/index.js"></script>
+
+
+    </head>
+
+    <body>
+        <div class="events">
+            <h3>Page</h3>
+            <div class="event-group">
+
+            <button onclick="magentoStorefrontEvents.publish.pageView()">
+                pageView
+            </button>
+            </div>
+
+            <h3>Product</h3>
+            <div class="event-group">
+                <button onclick="magentoStorefrontEvents.publish.productPageView()">
+                    productPageView
+                </button>
+    
+                <button onclick="magentoStorefrontEvents.publish.addToCart()">
+                    addToCart
+                </button>
+            </div>
+
+            <h3>Cart</h3>
+            <div class="event-group">
+            <button
+                onclick="magentoStorefrontEvents.publish.shoppingCartView()"
+            >
+                shoppingCartView
+            </button>
+
+            <button onclick="magentoStorefrontEvents.publish.initiateCheckout()">
+                initiateCheckout
+            </button>
+            </div>
+
+            <h3>Checkout</h3>
+
+            <div class="event-group">
+
+            <button onclick="magentoStorefrontEvents.publish.placeOrder()">
+                placeOrder
+            </button>
+            </div>
+
+            <h3>Product Recs</h3>
+
+            <div class="event-group">
+
+            <button
+                onclick="magentoStorefrontEvents.publish.recsItemAddToCartClick('abc123', 111111)"
+            >
+                recsItemAddToCartClick
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.recsItemClick('abc123', 111111)"
+            >
+                recsItemClick
+            </button>
+
+            <button onclick="magentoStorefrontEvents.publish.recsRequestSent()">
+                recsRequestSent
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.recsResponseReceived()"
+            >
+                recsResponseReceived
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.recsUnitRender('abc123')"
+            >
+                recsUnitRender
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.recsUnitView('abc123')"
+            >
+                recsUnitView
+            </button>
+
+            </div>
+
+            <h3>Live Search</h3>
+
+            <div class="event-group">
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchCategoryClick('search-bar', 'Bottoms')"
+            >
+                searchCategoryClick
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchProductClick('search-bar', 'abc123')"
+            >
+                searchProductClick
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchRequestSent('search-bar')"
+            >
+                searchRequestSent
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchResponseReceived('search-bar')"
+            >
+                searchResponseReceived
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.categoryResultsView()"
+            >
+                categoryResultsView
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchResultsView('abc123')"
+            >
+                searchResultsView
+             </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.searchSuggestionClick('abc123', 'red pants')"
+            >
+                searchSuggestionClick
+            </button>
+            </div>
+
+            <h3>Account</h3>
+
+            <div class="event-group">
+
+            <button
+                onclick="magentoStorefrontEvents.publish.createAccount()"
+            >
+                createAccount
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.editAccount()"
+            >
+                editAccount
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.signIn()"
+            >
+                signIn
+            </button>
+
+            <button
+                onclick="magentoStorefrontEvents.publish.signOut()"
+            >
+                signOut
+            </button>
+
+            </div>
+
+            <h3>Custom</h3>
+            <div class="event-group">
+
+            <button onclick="publishCustomEvent()">
+                custom: save for later
+            </button>
+            </div>
+
+            <script>
+                function publishCustomEvent() {
+                    magentoStorefrontEvents.publish.custom({
+                        commerce: {
+                            saveForLaters: {
+                                value: 1
+                            }
+                        }
+                    });
+                }
+            </script>
+
+            <button onclick="publishProductPageViewOverride()">
+                custom override: product view
+            </button>
+            </div>
+
+            <script>
+                function publishProductPageViewOverride() {
+                    magentoStorefrontEvents.publish.productPageView({
+                        productListItems: [{
+                            productCategories: [{
+                                categoryID: "cat_15",
+                                categoryName: "summer pants",
+                                categoryPath: "pants/mens/summer"
+                            }]
+                        }]
+                    });
+                }
+            </script>
+            
+        </div>
+    </body>
+</html>
